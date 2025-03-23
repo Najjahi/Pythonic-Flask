@@ -11,18 +11,18 @@ from wtforms.validators import (
     EqualTo,
     ValidationError,
 )
-
+#'a56119fc45284ec5b42d3c0fecf067646bb33ec274a836e4b191bc5eac346b47'
 class RegistrationForm(FlaskForm):
     fname = StringField(
-        "First Name", validators=[DataRequired(), Length(min=2, max=25)]
+        "Prénom", validators=[DataRequired(), Length(min=2, max=25)]
     )
-    lname = StringField("Last Name", validators=[DataRequired(), Length(min=2, max=25)])
+    lname = StringField("Nom", validators=[DataRequired(), Length(min=2, max=25)])
     username = StringField(
-        "Username", validators=[DataRequired(), Length(min=2, max=25)]
+        "Nom d'utilisateur", validators=[DataRequired(), Length(min=2, max=25)]
     )
     email = StringField("Email", validators=[DataRequired(), Email()])
     password = PasswordField(
-        "Password",
+        "Mot de passe",
         validators=[
             DataRequired(),
             Regexp(
@@ -31,52 +31,52 @@ class RegistrationForm(FlaskForm):
         ],
     )
     confirm_password = PasswordField(
-        "Confirm Password", validators=[DataRequired(), EqualTo("password")]
+        "Confirmation du mot de passe", validators=[DataRequired(), EqualTo("Mot de passe")]
     )
-    submit = SubmitField("Sign Up")
+    submit = SubmitField("S'inscrire")
 
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()
         if user:
             raise ValidationError(
-                "Username already exists! Please chosse a different one"
+                "Ce nom d'utilisateur existe déjà ! Veuillez en choisir un autre"
             )
 
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
         if user:
-            raise ValidationError("Email already exists! Please chosse a different one")
+            raise ValidationError("Cet Email existe déjà ! Veuillez en choisir un autre")
 
 
 class LoginForm(FlaskForm):
     email = StringField("Email", validators=[DataRequired(), Email()])
     password = PasswordField(
-        "Password",
+        "Mot de passe",
         validators=[
             DataRequired(),
         ],
     )
-    remember = BooleanField("Remember Me")
-    submit = SubmitField("Log In")
+    remember = BooleanField("Se souvenir de moi")
+    submit = SubmitField("Se connecter")
 
 
 class UpdateProfileForm(FlaskForm):
     username = StringField(
-        "Username", validators=[DataRequired(), Length(min=2, max=25)]
+        "Nom d'utilisateur", validators=[DataRequired(), Length(min=2, max=25)]
     )
     email = StringField("Email", validators=[DataRequired(), Email()])
     bio = TextAreaField("Bio")
     picture = FileField(
-        "Update Profile Picture", validators=[FileAllowed(["jpg", "png"])]
+        "Mettre à jour la photo de profil", validators=[FileAllowed(["jpg", "png"])]
     )
-    submit = SubmitField("Update")
+    submit = SubmitField("Modifier")
 
     def validate_username(self, username):
         if username.data != current_user.username:
             user = User.query.filter_by(username=username.data).first()
             if user:
                 raise ValidationError(
-                    "Username already exists! Please chosse a different one"
+                    "Ce Nom d'utilisateur existe déjà ! Veuillez en choisir un autre"
                 )
 
     def validate_email(self, email):
@@ -84,16 +84,16 @@ class UpdateProfileForm(FlaskForm):
             user = User.query.filter_by(email=email.data).first()
             if user:
                 raise ValidationError(
-                    "Email already exists! Please chosse a different one"
+                    "Cet Email existe déjà ! Veuillez en choisir un autre"
                 )
 
 class RequestResetForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
-    submit = SubmitField('Request Password Reset')
+    submit = SubmitField('Initialiser Mot de passe')
 
 class ResetPasswordForm(FlaskForm):
     password = PasswordField(
-        "Password",
+        "Mot de passe",
         validators=[
             DataRequired(),
             Regexp(
@@ -102,6 +102,6 @@ class ResetPasswordForm(FlaskForm):
         ],
     )
     confirm_password = PasswordField(
-        "Confirm Password", validators=[DataRequired(), EqualTo("password")]
+        "Confirmation du mot de passe", validators=[DataRequired(), EqualTo("Mot de passe")]
     )
-    submit = SubmitField("Reset Password")
+    submit = SubmitField("Initialiser Mot de passe")

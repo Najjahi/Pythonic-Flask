@@ -16,7 +16,7 @@ from projet.recettes.forms import (
 from projet.plats.forms import NewPlatForm
 
 from projet import db
-#from flask_modals import render_template_modal
+from flask_modals import render_template_modal
 from flask_login import (
     login_required,
     current_user,
@@ -77,17 +77,17 @@ def new_recette():
         flash("New Plat has been created!", "success")
         return redirect(url_for("users.dashboard"))
 
-   # modal = None if flag else "newPlat"
-    #return render_template_modal(
+    modal = None if flag else "newPlat"
+    return render_template_modal(
     
     
-        #"new_recette.html",
-        #title="New Recette",
-        #new_recette_form=new_recette_form,
-        #new_plat_form=new_plat_form,
-        #active_tab="new_recette",
-       # modal=modal,
-    #)
+        "new_recette.html",
+        title="New Recette",
+        new_recette_form=new_recette_form,
+        new_plat_form=new_plat_form,
+        active_tab="new_recette",
+        modal=modal,
+    )
 
 
 @recettes.route("/<string:plat>/<strecette_slug>")

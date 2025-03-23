@@ -1,20 +1,20 @@
-{% extends "lesson.html"%}
-{% block lesson %}
+{% extends "recette.html"%}
+{% block recette %}
 
 <form action="" method="POST" enctype="multipart/form-data">
     {{ form.hidden_tag()}}
-    <legend class="border-bottom my-3">Update Lesson</legend>
+    <legend class="border-bottom my-3">Modifier une Recette</legend>
     <div class="mb-3">
-        {{ form.course.label(class='form-control-label')}}
-        {% if form.course.errors %}
-        {{ form.course(class='form-contro is-invalid')}}
+        {{ form.plat.label(class='form-control-label')}}
+        {% if form.plat.errors %}
+        {{ form.plat(class='form-contro is-invalid')}}
         <div class="invalid-feedback">
-            {% for error in form.course.errors %}
+            {% for error in form.plat.errors %}
             <span>{{ error }} </span>
             {% endfor %}
         </div>
         {% else %}
-        {{ form.course(class='form-select')}}
+        {{ form.plat(class='form-select')}}
         {% endif %}
     </div>
     <div class="mb-3">
@@ -68,10 +68,10 @@
 
     <div class="form-group">
         <div class="col-12">
-            <button class="btn btn-success" type="submit">Update</button>
+            <button class="btn btn-success" type="submit">Modifier</button>
         </div>
     </div>
 </form>
 {{ ckeditor.load(custom_url = url_for('static', filename = 'ckeditor/ckeditor.js')) }}
 {{ ckeditor.config(name='content')}}
-{% endblock lesson %}
+{% endblock recette %}

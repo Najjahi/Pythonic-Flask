@@ -7,16 +7,16 @@
     <form action=" " method="POST" enctype="multipart/form-data">
         {{ profile_form.hidden_tag() }}
         <fieldset class='form-group'>
-            <legend class='border-bottom mb-4'>Personal Information</legend>
+            <legend class='border-bottom mb-4'>Informations Personnels</legend>
             <img class="rounded-circle user-img" src="{{image_file}}" alt="">
             <div class='form-group'>
                 <div class="row mb-3">
                     <div class="col">
-                        <label for="fname" class="form-label">First Name</label>
+                        <label for="fname" class="form-label">Prénom</label>
                         <input class="form-control" type="text" value="{{ current_user.fname}}" readonly>
                     </div>
                     <div class="col">
-                        <label for="lname" class="form-label">Last Name</label>
+                        <label for="lname" class="form-label">Nom</label>
                         <input class="form-control" type="text" value="{{ current_user.lname}}" readonly>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
             </div>
         </fieldset>
         <fieldset>
-            <legend class="border-bottom my-3">Biography</legend>
+            <legend class="border-bottom my-3">Biographie</legend>
             <div class="form-group">
                 <div class="my-3">
                     {{ profile_form.bio.label(class='form-control-label') }}
@@ -68,7 +68,7 @@
                     {% endif %}
                 </div>
                 <div class="col-12">
-                    <button class="btn btn-success" type="submit">Update</button>
+                    <button class="btn btn-success" type="submit">Modifier</button>
                 </div>
             </div>
         </fieldset>

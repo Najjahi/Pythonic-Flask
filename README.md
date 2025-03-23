@@ -8,7 +8,7 @@ from flask_admin.contrib.sqla import ModelView
 pip install --upgrade flask-admin flask flask-sqlalchemy wtforms
 pip install wtforms-sqlalchemy flask-ckeditor Flask-Mail
 pip install flask-modals Flask-Mail flask-admin Pillow
-pip install Flask-WTF Flask-Login
+pip install Flask-WTF Flask-Login flask-mail email_validator
 pip install Flask-Bcrypt Flask-Migrate
 
 pip install Werkzeug==2.2.3
@@ -127,3 +127,15 @@ User.query.all()
 
 
 RDV : https://www.jdoodle.com/online-java-compiler
+
+from itsdangerous import URLSafeTimedSerializer
+>>>
+>>> s = URLSafeTimedSerializer('supersecret')
+>>> token = s.dumps({'user_id':1}) #1 c a d 1 heure
+>>> token
+'eyJ1c2VyX2lkIjoxfQ.Z8iXUA.XWJebQM4qMc7xcAee_wMYLMhbTg'
+Imasouk2025  Imasoukcnam
+Le01011954 imasoukcnam@gmail.com
+ztop dgeg hjxg ywip
+de51a48395fd0c521776b6b54fd8a0e7
+P@ssw0rd

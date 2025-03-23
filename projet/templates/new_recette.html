@@ -5,21 +5,21 @@
     role="tabpanel" aria-labelledby="nav-newRecette-tab">
     <form action="/dashboard/new_recette" method="POST" enctype="multipart/form-data">
         {{ new_recette_form.hidden_tag()}}
-        <legend class="border-bottom my-3">New Recette</legend>
+        <legend class="border-bottom my-3">Nouvelle Recette</legend>
         <div class="mb-3">
-            {{ new_recette_form.course.label(class='form-control-label')}}
-            {% if new_recette_form.course.errors %}
-            {{ new_recette_form.course(class='form-contro is-invalid')}}
+            {{ new_recette_form.plat.label(class='form-control-label')}}
+            {% if new_recette_form.plat.errors %}
+            {{ new_recette_form.plat(class='form-contro is-invalid')}}
             <div class="invalid-feedback">
-                {% for error in new_recette_form.course.errors %}
+                {% for error in new_recette_form.plat.errors %}
                 <span>{{ error }} </span>
                 {% endfor %}
             </div>
             {% else %}
-            {{ new_recette_form.course(class='form-select')}}
+            {{ new_recette_form.plat(class='form-select')}}
             {% endif %}
             <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#newPlat">
-                New Plat?
+                nouveau Plat?
             </button>
         </div>
         <div class="mb-3">
@@ -95,51 +95,51 @@
                 <div class="modal-body">
                     {{ modal_messages() }}
                     <form action="/dashboard/new_recette" method="POST" enctype="multipart/form-data">
-                        {{ new_course_form.hidden_tag() }}
+                        {{ new_plat_form.hidden_tag() }}
                         <div class="mb-3">
-                            {{ new_course_form.title.label(class='form-control-label')}}
-                            {% if new_course_form.title.errors %}
-                            {{ new_course_form.title(class='form-control is-invalid')}}
+                            {{ new_plat_form.title.label(class='form-control-label')}}
+                            {% if new_plat_form.title.errors %}
+                            {{ new_plat_form.title(class='form-control is-invalid')}}
                             <div class="invalid-feedback">
-                                {% for error in new_course_form.title.errors %}
+                                {% for error in new_plat_form.title.errors %}
                                 <span>{{ error }}</span>
                                 {% endfor %}
                             </div>
                             {% else %}
-                            {{ new_course_form.title(class='form-control')}}
+                            {{ new_plat_form.title(class='form-control')}}
                             {% endif %}
                         </div>
                         <div class="mb-3">
-                            {{ new_course_form.description.label(class='form-control-label')}}
-                            {% if new_course_form.description.errors %}
-                            {{ new_course_form.description(class='form-control is-invalid')}}
+                            {{ new_plat_form.description.label(class='form-control-label')}}
+                            {% if new_plat_form.description.errors %}
+                            {{ new_plat_form.description(class='form-control is-invalid')}}
                             <div class="invalid-feedback">
-                                {% for error in new_course_form.description.errors %}
+                                {% for error in new_plat_form.description.errors %}
                                 <span>{{ error }}</span>
                                 {% endfor %}
                             </div>
                             {% else %}
-                            {{ new_course_form.description(class='form-control')}}
+                            {{ new_plat_form.description(class='form-control')}}
                             {% endif %}
                         </div>
 
                         <div class="mb-3">
-                            {{ new_course_form.icon.label(class='form-control-label')}}
-                            {% if new_course_form.icon.errors %}
-                            {{ new_course_form.icon(class='form-control is-invalid')}}
+                            {{ new_plat_form.icon.label(class='form-control-label')}}
+                            {% if new_plat_form.icon.errors %}
+                            {{ new_plat_form.icon(class='form-control is-invalid')}}
                             <div class="invalid-feedback">
-                                {% for error in new_course_form.icon.errors %}
+                                {% for error in new_plat_form.icon.errors %}
                                 <span>{{ error }}</span>
                                 {% endfor %}
                             </div>
                             {% else %}
-                            {{ new_course_form.icon(class='form-control')}}
+                            {{ new_plat_form.icon(class='form-control')}}
                             {% endif %}
 
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            {{new_course_form.submit(class='btn btn-primary')}}
+                            {{new_plat_form.submit(class='btn btn-primary')}}
                         </div>
                     </form>
                 </div>
