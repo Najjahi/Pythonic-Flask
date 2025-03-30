@@ -18,7 +18,7 @@
             {% else %}
             {{ new_recette_form.plat(class='form-select')}}
             {% endif %}
-            <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal" data-bs-target="#newPlat">
+            <button type="button" class="btn btn-warning mt-3" data-bs-toggle="modal" data-bs-target="#newPlat">
                 nouveau Plat?
             </button>
         </div>
@@ -78,7 +78,7 @@
 
         <div class="form-group">
             <div class="col-12">
-                <button class="btn btn-success" type="submit">Post</button>
+                <button class="btn btn-success" type="submit">Publier</button>
             </div>
         </div>
     </form>
@@ -89,7 +89,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="newPlatModal">Create New Plat</h5>
+                    <h5 class="modal-title" id="newPlatModal">Créer un nouveau Plat</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -138,7 +138,7 @@
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                             {{new_plat_form.submit(class='btn btn-primary')}}
                         </div>
                     </form>

@@ -57,7 +57,7 @@ def new_recette():
         )
         db.session.add(recette)
         db.session.commit()
-        flash("Your recette has been created!", "success")
+        flash("Votre recette a bien été créee!", "success")
         return redirect(url_for("recettes.new_recette"))
 
     elif form == "new_plat_form" and new_plat_form.validate_on_submit():
@@ -74,7 +74,7 @@ def new_recette():
         db.session.add(plat)
         db.session.commit()
         session["flag"] = True
-        flash("New Plat has been created!", "success")
+        flash("Ce nouveau plat a bien été crée!", "success")
         return redirect(url_for("users.dashboard"))
 
     modal = None if flag else "newPlat"
@@ -90,7 +90,7 @@ def new_recette():
     )
 
 
-@recettes.route("/<string:plat>/<strecette_slug>")
+@recettes.route("/<string:plat>/<string:recette_slug>")
 def recette(recette_slug, plat):
     recette = Recette.query.filter_by(slug=recette_slug).first()
     if recette:
@@ -160,5 +160,5 @@ def delete_recette(recette_id):
         abort(403)
     db.session.delete(recette)
     db.session.commit()
-    flash("Your recette has been deleted!", "success")
+    flash("Votre recette a bien été supprimé!", "success")
     return redirect(url_for("recettes.user_recettes"))

@@ -26,7 +26,7 @@ def upload():
     f = request.files.get("upload")
     extension = f.filename.split(".")[-1].lower()
     if extension not in ["jpg", "gif", "png", "jpeg"]:
-        return upload_fail(message="File extension not allowed!")
+        return upload_fail(message="Ctte extension de fichier non autorisée!")
     random_hex = secrets.token_hex(8)
     image_name = random_hex + extension
     f.save(os.path.join(current_app.root_path, "static/media", image_name))

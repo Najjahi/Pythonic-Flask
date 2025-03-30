@@ -89,7 +89,7 @@ class UpdateProfileForm(FlaskForm):
 
 class RequestResetForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
-    submit = SubmitField('Initialiser Mot de passe')
+    submit = SubmitField('Initialiser Votre Mot de passe')
 
 class ResetPasswordForm(FlaskForm):
     password = PasswordField(

@@ -5,9 +5,7 @@ from flask import (
     render_template,
 )
 
-
 plats_bp = Blueprint("plats", __name__)
-
 
 @plats_bp.route("/<string:plat_title>")
 def plat(plat_title):
@@ -24,7 +22,6 @@ def plat(plat_title):
         plat=plat,
         recettes=recettes,
     )
-
 
 @plats_bp.route("/plats")
 def plats():

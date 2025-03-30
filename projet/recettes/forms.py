@@ -17,7 +17,7 @@ class NewRecetteForm(FlaskForm):
         "Slug",
         validators=[DataRequired(), Length(max=32)],
         render_kw={
-            "placeholder": "Version courte et descriptive de votre titre. Optimisé pour le référencement"
+            "placeholder": "Version courte et descriptive de notre titre. Optimisé pour le référencement"
         },
     )
     content = CKEditorField(

@@ -27,10 +27,10 @@
                                 href="{{url_for('recettes.recette', recette_slug=recette.slug, plat=recette.plat_name.title)}}">{{recette.title}}</a>
                         </h5>
                         <span><img class="article-img rounded-circle"
-                                src="{{url_for('static', filename='user_pics/'+recette.author.image_file)}}" alt="">By:
+                                src="{{url_for('static', filename='user_pics/'+recette.author.image_file)}}" alt="">par:
                             <a href="{{url_for('users.author', username=recette.author.username)}}"
                                 class="link">{{recette.author.username}}</a></span>
-                        <span class="text-muted">On: {{recette.date_posted.strftime('%Y-%m-%d')}}</span>
+                        <span class="text-muted">Le: {{recette.date_posted.strftime('%Y-%m-%d')}}</span>
 
                     </div>
                 </div>
@@ -49,7 +49,7 @@
                     </li>
                     {%else%}
                     <li class="page-item">
-                        <a href="{{url_plat_title=plat.title, page=page_num)}}"
+                        <a href="{{ url_for('plats.plat', plat_title=plat.title, page=page_num) }}">
                             class="page-link">{{page_num}}</a>
                     </li>
                     {%endif%}
