@@ -22,7 +22,7 @@ from flask_login import (
     current_user,
 )
 from projet.helpers import save_picture
-from projet.recettes.helpers import get_previous_next_recette, delete_picture
+from projet.recettes.helpers import get_precedente_suivante_recette, delete_picture
 from flask import g
 
 recettes = Blueprint("recettes", __name__)
@@ -94,23 +94,30 @@ def new_recette():
 def recette(recette_slug, plat):
     recette = Recette.query.filter_by(slug=recette_slug).first()
     if recette:
-        previous_recette, next_recette = get_previous_next_recette(recette)
+        precedente_recette, suivante_recette = get_precedente_suivante_recette(recette)
     recette_id = recette.id if recette else None
     recette = Recette.query.get_or_404(recette_id)
     return render_template(
         "recette_view.html",
         title=recette.title,
         recette=recette,
-        previous_recette=previous_recette,
-        next_recette=next_recette,
+        precedente_recette=precedente_recette,
+        suivante_recette=suivante_recette,
     )
 
 
 @recettes.route("/dashboard/user_recettes", methods=["GET", "POST"])
 @login_required
 def user_recettes():
+    print("current_user =", current_user)
+    print("Recettes =", current_user.recettes)
+    print("Active tab = user_recettes")
+    recettes_user = current_user.recettes
     return render_template(
-        "user_recettes.html", title="Your Recettes", active_tab="user_recettes"
+        "user_recettes.html",  # PAS "dashboard.html" ici !
+        title="Vos Recettes",
+        active_tab="user_recettes",
+        recettes=recettes_user,
     )
 
 
@@ -118,7 +125,7 @@ def user_recettes():
 def update_recette(recette_slug, plat):
     recette = Recette.query.filter_by(slug=recette_slug).first()
     if recette:
-        previous_recette, next_recette = get_previous_next_recette(recette)
+        precedente_recette, suivante_recette = get_precedente_suivante_recette(recette)
     recette_id = recette.id if recette else None
     recette = Recette.query.get_or_404(recette_id)
     if recette.author != current_user:
@@ -134,7 +141,7 @@ def update_recette(recette_slug, plat):
             new_picture = save_picture(form.thumbnail.data, "static/recette_thumbnails")
             recette.thumbnail = new_picture
         db.session.commit()
-        flash("Your recette has been updated!", "success")
+        flash("Votre recette a bien été modifiée!", "success")
         return redirect(
             url_for("recettes.recette", recette_slug=recette.slug, plat=recette.plat_name.title)
         )
@@ -147,8 +154,8 @@ def update_recette(recette_slug, plat):
         "update_recette.html",
         title="Update | " + recette.title,
         recette=recette,
-        previous_recette=previous_recette,
-        next_recette=next_recette,
+        precedente_recette=precedente_recette,
+        suivante_recette=suivante_recette,
         form=form,
     )
 

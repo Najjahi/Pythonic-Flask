@@ -1,6 +1,7 @@
 {%extends "layout.html"%}
 {% block content%}
 <!-- Tabs -->
+
 <div class="container my-5">
     <nav>
         <div class="nav nav-tabs" id="tablist">
@@ -11,15 +12,14 @@
             </a>
 
             <a class="link" href="/dashboard/new_recette">
-                <button class="{{'nav-link active' if active_tab=='new_recette' else 'nav-link'}}" id="nav-newLesson-tab"
-                    data-bs-toggle="tab" data-bs-target="#nav-newLesson" type="button" role="tab"
-                    aria-controls="nav-newLesson" aria-selected="true">Nouvelle recette</button>
+                <button class="{{'nav-link active' if active_tab=='new_recette' else 'nav-link'}}" id="nav-newRecette-tab"
+                    data-bs-toggle="tab" data-bs-target="#nav-newRecette" type="button" role="tab"
+                    aria-controls="nav-newRecette" aria-selected="true">Nouvelle recette</button>
             </a>
 
             <a class="link" href="/dashboard/user_recettes">
                 <button class="{{'nav-link active' if active_tab=='user_recettes' else 'nav-link'}}"
-                    id="nav-user_recettes-tab" data-bs-toggle="tab" data-bs-target="#nav-Lessons" type="button"
-                    role="tab" aria-controls="nav-Lessons" aria-selected="true">vos recettes</button>
+                    id="nav-user_recettes-tab" data-bs-toggle="tab" data-bs-target="#nav-user_recettes" type="button" role="tab" aria-controls="nav-user_recettes" aria-selected="true">vos recettes</button>
             </a>
         </div>
     </nav>
@@ -27,10 +27,11 @@
     <div class="tab-content" id="nav-tabContent">
         <!-- profile -->
         {% block profile %} {% endblock profile%}
-        <!-- New Lesson -->
+        <!-- New Recette -->
         {% block new_recette %} {% endblock new_recette %}
-        <!-- User Lessons -->
+        <!-- User Recettes -->
         {% block user_recettes %} {% endblock user_recettes %}
     </div>
 </div>
 {% endblock content %}
+

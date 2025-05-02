@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
     image_file = db.Column(db.String(20), nullable=False, default="default.png")
     bio = db.Column(db.Text, nullable=True)
     password = db.Column(db.String(60), nullable=False)
-    lessons = db.relationship("Recette", backref="author", lazy=True)
+    recettes = db.relationship("Recette", backref="author", lazy=True)
 
     def get_reset_token(self):
         s = Serializer(current_app.config["SECRET_KEY"], salt="pw-reset")
@@ -59,7 +59,7 @@ class Plat(db.Model):
     title = db.Column(db.String(50), unique=True, nullable=False)
     description = db.Column(db.String(150), nullable=False)
     icon = db.Column(db.String(20), nullable=False, default="default_icon.jpg")
-    lessons = db.relationship("Recette", backref="plat_name", lazy=True)
+    recettes = db.relationship("Recette", backref="plat_name", lazy=True)
 
     def __repr__(self):
         return f"Plat('{self.title}')"

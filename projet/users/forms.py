@@ -21,17 +21,14 @@ class RegistrationForm(FlaskForm):
         "Nom d'utilisateur", validators=[DataRequired(), Length(min=2, max=25)]
     )
     email = StringField("Email", validators=[DataRequired(), Email()])
-    password = PasswordField(
-        "Mot de passe",
+    password = PasswordField("Mot de passe",
         validators=[
             DataRequired(),
-            Regexp(
-                "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_])[A-Za-z\d@$!%*?&_]{8,32}$"
-            ),
+            Regexp(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_])[A-Za-z\d@$!%*?&_]{8,32}$"),
         ],
     )
     confirm_password = PasswordField(
-        "Confirmation du mot de passe", validators=[DataRequired(), EqualTo("Mot de passe")]
+        "Confirmation du mot de passe", validators=[DataRequired(), EqualTo("password")]
     )
     submit = SubmitField("S'inscrire")
 
@@ -96,12 +93,10 @@ class ResetPasswordForm(FlaskForm):
         "Mot de passe",
         validators=[
             DataRequired(),
-            Regexp(
-                "^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_])[A-Za-z\d@$!%*?&_]{8,32}$"
-            ),
-        ],
+             Regexp(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_])[A-Za-z\d@$!%*?&_]{8,32}$"),
+    ],
     )
     confirm_password = PasswordField(
-        "Confirmation du mot de passe", validators=[DataRequired(), EqualTo("Mot de passe")]
+        "Confirmation du mot de passe", validators=[DataRequired(), EqualTo("password")]
     )
     submit = SubmitField("Initialiser Mot de passe")

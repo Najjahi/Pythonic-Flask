@@ -45,7 +45,7 @@ def register():
         )
         db.session.add(user)
         db.session.commit()
-        flash(f"Account created successfully for {form.username.data}", "success")
+        flash(f"Compte créé avec succès pour {form.username.data}", "success")
         return redirect(url_for("users.login"))
     return render_template("register.html", title="Register", form=form)
 
@@ -60,10 +60,10 @@ def login():
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
             next_page = request.args.get("next")
-            flash("You have been logged in!", "success")
+            flash("Vous avez été connecté!", "success")
             return redirect(next_page) if next_page else redirect(url_for("main.home"))
         else:
-            flash("Login Unsuccessful. Please check credentials", "danger")
+            flash("Connexion infructueuse. Veuillez vérifier les informations d’identification", "danger")
     return render_template("login.html", title="Login", form=form)
 
 
@@ -86,14 +86,14 @@ def profile():
     if profile_form.validate_on_submit():
         if profile_form.picture.data:
             picture_file = save_picture(
-                profile_form.picture.data, "static/user_pics", output=(150, 150)
+                profile_form.picture.data, "static/user_pics", output_size=(150, 150)
             )
             current_user.image_file = picture_file
         current_user.username = profile_form.username.data
         current_user.email = profile_form.email.data
         current_user.bio = profile_form.bio.data
         db.session.commit()
-        flash("Your profile has been updated", "success")
+        flash("Votre profil a été mis à jour", "success")
         return redirect(url_for("users.profile"))
     elif request.method == "GET":
         profile_form.username.data = current_user.username
@@ -131,8 +131,7 @@ def reset_request():
         if user:
             send_reset_email(user)
         flash(
-            "If this account exists, you will receive an email with instructions",
-            "info",
+            "Si ce compte existe, vous recevrez un e-mail avec des instructions","info",
         )
         return redirect(url_for("users.login"))
     return render_template("reset_request.html", title="Reset Password", form=form)
@@ -144,7 +143,7 @@ def reset_password(token):
         return redirect(url_for("main.home"))
     user = User.verify_reset_token(token)
     if not user:
-        flash("The token is invalid or expired", "warning")
+        flash("Le jeton n’est pas valide ou a expiré", "warning")
         return redirect(url_for("users.reset_request"))
     form = ResetPasswordForm()
     if form.validate_on_submit():
@@ -153,6 +152,6 @@ def reset_password(token):
         )
         user.password = hashed_password
         db.session.commit()
-        flash(f"Your password has been updated. You can now log in", "success")
+        flash(f"Votre mot de passe a été mis à jour. Vous pouvez maintenant vous connecter", "success")
         return redirect(url_for("users.login"))
     return render_template("reset_password.html", title="Reset Password", form=form)

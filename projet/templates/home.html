@@ -123,7 +123,7 @@
                         <p>Le nom du Plat : {{ recette.plat_name }}</p>
 
                         <span><img class="article-img rounded-circle"
-                                src="{{url_for('static', filename='user_pics/'+recette.author.image_file)}}" alt="">By:
+                                src="{{url_for('static', filename='user_pics/'+recette.author.image_file)}}" alt="">Par:
                             <a href="{{ url_for('users.author', username=recette.author.username)}}"
                                 class="link">{{recette.author.username}}</a></span>
                                 <p>Le titre du nom du Plat: {{ recette.plat_name.title }}</p>

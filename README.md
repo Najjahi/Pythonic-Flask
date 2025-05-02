@@ -2,33 +2,30 @@ Flask App developed for Flask course on https://youtube.com/playlist?list=PL6X8I
  projet
 python -m venv venv
 venv\Scripts\activate
+pip install --upgrade flask-admin flask flask-sqlalchemy wtforms wtforms-sqlalchemy flask-ckeditor Flask-Mail flask-modals Flask-Mail flask-admin Pillow Flask-WTF Flask-Login flask-mail email_validator Flask-Bcrypt Flask-Migrate Werkzeug==2.2.3 python-dotenvpy --upgrade Pillow --upgrade greenlet pip-tools Flask-Migrate Flask-Modals
+pip install email-validator
 pip install flask
 pip install flask-admin flask-sqlalchemy
 from flask_admin.contrib.sqla import ModelView
 pip install --upgrade flask-admin flask flask-sqlalchemy wtforms
-pip install wtforms-sqlalchemy flask-ckeditor Flask-Mail
-pip install flask-modals Flask-Mail flask-admin Pillow
+pip install wtforms-sqlalchemy 
+pip install flask-ckeditor pour le m en forme du texte
+pip install Flask-Mail
+pip install flask-modals pour javascript
+pip install Flask-Mail 
+pip install flask-admin Pillow
 pip install Flask-WTF Flask-Login flask-mail email_validator
 pip install Flask-Bcrypt Flask-Migrate
-
+pip install flask==2.2.5pip 
+install --upgrade flask_modals
 pip install Werkzeug==2.2.3
 pip install python-dotenv
-
+pip install bleach
+pip show jinja2
+pip install --upgrade jinja2==3.0.3
 
 Ctrl + Shift + P tape "Python: Select Interpreter" et sélectionne l'interpréteur dans ton venv
 C:\Users\lenovo\Desktop\Pythonic-Flask\venv\Scripts\python.exe
-
-
-
-
-
-
-
-
-
-
-
-
 
 pip install flask_wtf 
  pip install flask_bcrypt from flask_bcrypt import Bcrypt 
@@ -139,3 +136,60 @@ Le01011954 imasoukcnam@gmail.com
 ztop dgeg hjxg ywip
 de51a48395fd0c521776b6b54fd8a0e7
 P@ssw0rd
+
+https://dbdiagram.io/d/67ed0dd84f7afba18411e146  mpd par yamina 
+https://demo.bpmn.io/new  bpmn par yamina
+
+mysql Root Root Imane p@ssw0rd
+
+Remove-Item -Recurse -Force venv
+
+
+>>> from projet import app
+>>> from projet import db
+>>> from projet.models import User
+>>> 
+>>> with app.app_context():
+...     user = User.query.first()
+...     print(user)
+...
+User('imane', 'NAJJAHI', 'imane najjahi', 'najjahiimane@gmail.com', 'default.png')
+>>> with app.app_context():
+...     users = User.query.all()
+...     for user in users:
+...         print(user)
+...
+KeyboardInterrupt
+>>> from projet import app, db
+>>> from projet.models import User
+>>>
+>>> with app.app_context():
+...     users = User.query.all()
+...     for user in users:
+...         print(user)
+...
+KeyboardInterrupt
+>>> for user in users:
+...     print(user.prenom, user.nom, user.email)
+...
+KeyboardInterrupt
+>>> with app.app_context():
+...     count = User.query.count()
+...     print(f"Nombre d'utilisateurs : {count}")
+...
+Nombre d'utilisateurs : 3
+>>> with app.app_context():
+...     users = User.query.all()
+...     for user in users:
+...         print(user)
+... 
+User('imane', 'NAJJAHI', 'imane najjahi', 'najjahiimane@gmail.com', 'default.png')
+User('imane', 'NAJJAHI', 'imane', 'imane@gmail.com', '2a507317bf145bc8.png')
+User('lina', 'marhri', 'lina', 'lina@gmail.com', 'a18e787698408e11.png')
+
+>>> with app.app_context():
+...     user = User.query.filter_by(username='imane').first()
+...     print(user.recettes)
+...
+[Recette('Seffa au poulet', '2025-04-27 11:01:50.224078'), Recette('pastilla poulet amandes', '2025-04-27 11:16:10.195609')]
+>>>

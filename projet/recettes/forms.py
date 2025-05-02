@@ -9,7 +9,6 @@ from wtforms.validators import DataRequired, Length
 def choice_query():
     return Plat.query
 
-
 class NewRecetteForm(FlaskForm):
     plat = QuerySelectField("Plat", query_factory=choice_query, get_label="title")
     title = StringField("Titre de la Recette", validators=[DataRequired(), Length(max=100)])
